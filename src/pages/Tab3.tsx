@@ -2,6 +2,9 @@ import React from 'react';
 import { IonHeader, IonToolbar, IonPage, IonTitle, IonContent } from '@ionic/react';
 
 const Tab3Page: React.FC = () => {
+    const test = () => {
+        return 'wow'
+    }
   return (
     <IonPage>
       <IonHeader>
@@ -9,7 +12,9 @@ const Tab3Page: React.FC = () => {
           <IonTitle>Tab Three</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent />
+      <IonContent>
+          {test()}
+      </IonContent>
     </IonPage>
   );
 };
