@@ -3,11 +3,11 @@ import {
     IonItem, IonLabel, IonInput,
     IonRow, IonCol, IonGrid, IonRouterLink, IonButton, IonText
 } from '@ionic/react';
-import {LoginWrapper} from '../../../components/container/login-wrapper';
+import {LoginWrapper} from '../../components/container/login-wrapper';
 import firebase from "firebase"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 
-export default class TherapistLogin extends Component<any> {
+export default class ClientLogin extends Component<any> {
     state = { isSignedIn: false }
     uiConfig = {
         signInFlow: "popup",
@@ -28,7 +28,7 @@ export default class TherapistLogin extends Component<any> {
     }
     render() {
         return(
-            <LoginWrapper title="Therapist" back={true} backHref="/">
+            <LoginWrapper title="Sign in">
                 <IonGrid>
                     <IonRow>
                         <IonCol>
@@ -60,8 +60,8 @@ export default class TherapistLogin extends Component<any> {
                         <IonCol>
                             <IonButton expand="block" size="large"
                                        shape="round"
-                                       color="secondary" className="ion-margin-vertical"
-                                       routerLink="/therapist/massage"
+                                       color="primary" className="ion-margin-vertical"
+                                       routerLink="/client/book"
                             >
                                 Sign in
                             </IonButton>
@@ -70,6 +70,7 @@ export default class TherapistLogin extends Component<any> {
                             <IonButton expand="block" size="large"
                                        shape="round"
                                        color="success" className="ion-margin-vertical"
+                                       routerLink="/client/registration"
                             >
                                 Sign up
                             </IonButton>

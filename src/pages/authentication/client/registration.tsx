@@ -19,6 +19,11 @@ export default class ClientReg extends Component<any> {
                         </IonCol>
                     </IonRow>
                     <IonRow>
+                        <IonCol size="12" className="ion-text-center">
+                            <IonText color="medium">
+                                Your favorite therapist is one click away!
+                            </IonText>
+                        </IonCol>
                         <IonCol>
                             <IonItem>
                                 <IonLabel position="floating">Email address</IonLabel>
@@ -32,6 +37,13 @@ export default class ClientReg extends Component<any> {
                                 <IonLabel position="floating">Confirm Password</IonLabel>
                                 <IonInput type="password"></IonInput>
                             </IonItem>
+                        </IonCol>
+                    </IonRow>
+                    <IonRow>
+                        <IonCol className="ion-margin-top ion-text-center ">
+                            <IonText color="medium">
+                                <IonRouterLink routerLink="/therapist/registration">Sign up as Therapist</IonRouterLink>, to meet new clients fast!.
+                            </IonText>
                         </IonCol>
                     </IonRow>
                     <IonRow>

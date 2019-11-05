@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { IonContent, IonSlides, IonSlide, IonLabel, IonItemOptions, IonItemOption, IonIcon, IonNote } from '@ionic/react';
+import { IonItemOption, IonItemOptions, IonList, IonItemSliding, IonItem, IonLabel, IonInput, IonToggle, IonRadio, IonCheckbox , IonContent} from '@ionic/react';
 
 export default class ItemSlidingExample extends Component<any> {
   render() {
@@ -10,17 +10,65 @@ export default class ItemSlidingExample extends Component<any> {
 
     return(
         <IonContent>
-          <IonSlides pager={true} options={slideOpts}>
-            <IonSlide>
-              <h1>Slide 1</h1>
-            </IonSlide>
-            <IonSlide>
-              <h1>Slide 2</h1>
-            </IonSlide>
-            <IonSlide>
-              <h1>Slide 3</h1>
-            </IonSlide>
-          </IonSlides>
+          {/*-- List of Text Items --*/}
+          <IonList>
+            <IonItem>
+              <IonLabel>Pokémon Yellow</IonLabel>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Mega Man X</IonLabel>
+            </IonItem>
+            <IonItem>
+              <IonLabel>The Legend of Zelda</IonLabel>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Pac-Man</IonLabel>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Super Mario World</IonLabel>
+            </IonItem>
+          </IonList>
+
+          {/*-- List of Input Items --*/}
+          <IonList>
+            <IonItem>
+              <IonLabel>Input</IonLabel>
+              <IonInput></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Toggle</IonLabel>
+              <IonToggle slot="end"></IonToggle>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Radio</IonLabel>
+              <IonRadio slot="end"></IonRadio>
+            </IonItem>
+            <IonItem>
+              <IonLabel>Checkbox</IonLabel>
+              <IonCheckbox slot="start" />
+            </IonItem>
+          </IonList>
+
+          {/*-- List of Sliding Items --*/}
+          <IonList>
+            <IonItemSliding>
+              <IonItem>
+                <IonLabel>Item</IonLabel>
+              </IonItem>
+              <IonItemOptions side="end">
+                <IonItemOption onClick={() => {}}>Unread</IonItemOption>
+              </IonItemOptions>
+            </IonItemSliding>
+
+            <IonItemSliding>
+              <IonItem>
+                <IonLabel>Item</IonLabel>
+              </IonItem>
+              <IonItemOptions side="end">
+                <IonItemOption onClick={() => {}}>Unread</IonItemOption>
+              </IonItemOptions>
+            </IonItemSliding>
+          </IonList>
         </IonContent>
     );
   }

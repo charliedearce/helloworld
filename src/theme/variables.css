@@ -75,3 +75,48 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+.speech-bubble {
+  position: relative;
+  width: 90%;
+  border: 1px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container-pp {
+  position: relative;
+  width: 50%;
+  margin: auto;
+}
+
+
+.container-pp img {
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  border-radius: 50%;
+  width:100px;
+  height:100px;
+}
+
+
+.container-pp .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #9c9c9c;
+  padding: 5px;
+  margin-left:30px;
+  margin-top:30px;
+  border-radius: 50%;
+
+}
+

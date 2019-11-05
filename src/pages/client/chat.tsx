@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {LoginWrapper} from '../../components/container/login-wrapper';
 
-
 export default class ClientChat extends Component<any> {
 
     render() {
