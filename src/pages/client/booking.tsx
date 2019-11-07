@@ -31,7 +31,7 @@ export default class ClientBooking extends Component<any> {
                                                 </IonAvatar> <br/>
                                                 <IonText color="success">Available</IonText>
                                             </td>
-                                            <td className="ion-padding-start">
+                                            <td className="ion-padding-start" valign="top" style={{paddingTop:"10px"}}>
                                                 <IonText style={{fontSize: "20px"}}>Babe Babe</IonText>
                                                 <br/>
                                                 <IonText color="medium" style={{fontSize: "15px"}}>Rate: $2.00
@@ -74,7 +74,7 @@ export default class ClientBooking extends Component<any> {
                                                 </IonAvatar> <br/>
                                                 <IonText color="danger">Busy</IonText>
                                             </td>
-                                            <td className="ion-padding-start">
+                                            <td className="ion-padding-start" valign="top" style={{paddingTop:"10px"}}>
                                                 <IonText style={{fontSize: "20px"}}>Oh Baby</IonText>
                                                 <br/>
                                                 <IonText color="medium" style={{fontSize: "15px"}}>Rate: $2.00
