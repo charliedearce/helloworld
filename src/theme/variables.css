@@ -117,6 +117,27 @@ http://ionicframework.com/docs/theming/ */
   margin-left:30px;
   margin-top:30px;
   border-radius: 50%;
+}
 
+.current {
+  border: 1px solid rgba(31, 241, 10, 1) !important;
+  background-color: rgba(31, 241, 10, 0.3) !important;
+}
+
+.queue-bubble {
+  position: relative;
+  width: 100%;
+  border: 1px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+}
+
+.img-pp {
+  margin-top: -70px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-radius: 50% !important;
+  width: 100px !important;
+  height: 100px !important;
 }
 

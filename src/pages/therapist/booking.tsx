@@ -11,12 +11,12 @@ export default class TherapistBooking extends Component<any> {
         return (
             <LoginWrapper title="Booking">
                 <IonRow>
-                    <IonCol className="ion-margin-top ">
-                        <IonList lines="none">
-                            <IonItem>1. Enter your information</IonItem>
-                            <IonItem>2. Turn ON-SITE button to ON</IonItem>
-                            <IonItem>3. Client Request You!</IonItem>
-                        </IonList>
+                    <IonCol className="ion-margin-top">
+                        <div className="queue-bubble ion-padding">
+                            1. Enter your information <br/>
+                            2. Turn ON-SITE button to ON <br/>
+                            3. Client Request You! <br/>
+                        </div>
                     </IonCol>
                 </IonRow>
                 <IonRow>
@@ -33,7 +33,7 @@ export default class TherapistBooking extends Component<any> {
                             </IonSelect>
                         </IonItem>
                         <IonItem>
-                            <IonLabel position="floating">Your Rage per Minute</IonLabel>
+                            <IonLabel position="floating">Your Rate per Minute</IonLabel>
                             <IonInput type="text"></IonInput>
                         </IonItem>
                         <IonItem>
@@ -41,7 +41,8 @@ export default class TherapistBooking extends Component<any> {
                         </IonItem>
                         <IonItem className="ion-margin-vertical">
                             <IonLabel>ON SITE</IonLabel>
-                            <IonToggle value="" onChange={() => {}} />
+                            <IonToggle value="" onChange={() => {
+                            }}/>
                         </IonItem>
                     </IonCol>
                 </IonRow>

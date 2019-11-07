@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
 import {
     IonContent,
     IonHeader,
@@ -13,7 +13,7 @@ type WrapperProps = {
     backHref?: string
 }
 
-export const LoginWrapper: FunctionComponent<WrapperProps> = (
+export const LoginWrapper: React.FC<WrapperProps> = (
     {
         title,
         children,

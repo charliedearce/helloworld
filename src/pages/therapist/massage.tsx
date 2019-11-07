@@ -15,7 +15,7 @@ export default class TherapistMassage extends Component<any> {
 
     render() {
         return (
-            <LoginWrapper title="Massage">
+            <LoginWrapper title={this.props.match.params.id} back={true} backHref="/therapist/massage">
                 <IonRow>
                     <IonCol>
                         <IonText color="medium" className="ion-text-center"><h3>Queue</h3></IonText>
@@ -57,7 +57,6 @@ export default class TherapistMassage extends Component<any> {
                             <IonCol>
                                 <IonButton className="ion-margin-vertical" expand="full" color="success" shape="round" fill="outline">Accept</IonButton>
                                 <IonButton className="ion-margin-vertical" expand="full" color="danger" shape="round" fill="outline">Decline</IonButton>
-                                <IonButton expand="full" color="dark" shape="round" fill="outline">Massage</IonButton>
                             </IonCol>
                         </IonRow>
                     </IonCardContent>

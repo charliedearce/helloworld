@@ -61,7 +61,7 @@ export default class ClientLogin extends Component<any> {
                             <IonButton expand="block" size="large"
                                        shape="round"
                                        color="primary" className="ion-margin-vertical"
-                                       routerLink="/client/book"
+                                       routerLink="/client/booking"
                             >
                                 Sign in
                             </IonButton>

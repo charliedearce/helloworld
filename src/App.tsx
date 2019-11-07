@@ -11,9 +11,11 @@ import Login from "./pages/authentication/login";
 import ClientReg from "./pages/authentication/client/registration";
 import TherapistReg from "./pages/authentication/therapist/registration";
 import Forgotpass from "./pages/authentication/forgotpass";
+import About from "./pages/common/about";
+import Privacy from "./pages/common/privacy";
+
 import ClientWrapper from "./components/container/client-wrapper";
 import TherapistWrapper from "./components/container/therapist-wrapper";
-import TherapistProfileEdit from "./pages/therapist/edit-profile";
 import ItemSlidingExample from "./App.test";
 
 /* Core CSS required for Ionic components to work properly */
@@ -34,7 +36,6 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Notifications from "./pages/therapist/notifications";
 
 firebase.initializeApp({
     apiKey: "AIzaSyDLoqcbTDMFuurtAyDgVEKZ6qwo0j0Osjk",
@@ -50,16 +51,31 @@ const App: React.FC = () => (
         <Route exact path="/client/registration" component={ClientReg}/>
         <Route exact path="/client/book" component={ClientWrapper}/>
         <Route exact path="/therapist/registration" component={TherapistReg}/>
+        <Route exact path="/about" component={About}/>
+        <Route exact path="/privacy" component={Privacy}/>
 
         {/*TAB ROUTES*/}
+        <Route exact path="/therapist/booking" component={TherapistWrapper} />
         <Route exact path="/therapist/massage" component={TherapistWrapper}/>
+        <Route exact path="/therapist/massage/:id" component={TherapistWrapper}/>
         <Route exact path="/therapist/message" component={TherapistWrapper} />
         <Route exact path="/therapist/message/:id" component={TherapistWrapper}/>
         <Route exact path="/therapist/profile" component={TherapistWrapper} />
         <Route exact path="/therapist/profile/edit" component={TherapistWrapper} />
         <Route exact path="/therapist/changepassword" component={TherapistWrapper} />
         <Route exact path="/therapist/notifications" component={TherapistWrapper} />
-        {/*<Route exact path="/therapist/booking" component={TherapistWrapper} />*/}
+        <Route exact path="/therapist/settings" component={TherapistWrapper} />
+
+        <Route exact path="/client/booking" component={ClientWrapper} />
+        <Route exact path="/client/message" component={ClientWrapper} />
+        <Route exact path="/client/message/:id" component={ClientWrapper}/>
+        <Route exact path="/client/profile" component={ClientWrapper} />
+        <Route exact path="/client/profile/edit" component={ClientWrapper} />
+        <Route exact path="/client/changepassword" component={ClientWrapper} />
+        <Route exact path="/client/notifications" component={ClientWrapper} />
+        <Route exact path="/client/about" component={ClientWrapper} />
+        <Route exact path="/client/privacy" component={ClientWrapper} />
+        <Route exact path="/client/settings" component={ClientWrapper} />
 
     </IonReactRouter>
   </IonApp>

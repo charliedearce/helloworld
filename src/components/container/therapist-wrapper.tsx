@@ -18,19 +18,28 @@ import TherapistMessageConvo from "../../pages/therapist/message-convo";
 import TherapistProfileEdit from "../../pages/therapist/edit-profile";
 import ChangePassword from "../../pages/common/changepass";
 import Notifications from "../../pages/therapist/notifications";
+import TherapistQueue from "../../pages/therapist/massage-list";
+import Settings from "../../pages/common/settings";
+import About from "../../pages/common/about";
+import Privacy from "../../pages/common/privacy";
+
 const TherapistWrapper: React.FC = () => (
     <>
         <IonReactRouter>
             <IonTabs>
                 <IonRouterOutlet>
                     <Route exact path="/therapist/booking" component={TherapistBooking} />
-                    <Route exact path="/therapist/massage" component={Massage} />
+                    <Route exact path="/therapist/massage" component={TherapistQueue} />
+                    <Route exact path="/therapist/massage/:id" component={Massage} />
                     <Route exact path="/therapist/message" component={Message} />
                     <Route exact path="/therapist/message/:id" component={TherapistMessageConvo} />
                     <Route exact path="/therapist/profile" component={Profile} />
                     <Route exact path="/therapist/profile/edit" component={TherapistProfileEdit} />
                     <Route exact path="/therapist/changepassword" component={ChangePassword} />
                     <Route exact path="/therapist/notifications" component={Notifications} />
+                    <Route exact path="/therapist/settings" component={Settings} />
+                    <Route exact path="/about" component={About} />
+                    <Route exact path="/privacy" component={Privacy} />
                 </IonRouterOutlet>
                 <IonTabBar slot="bottom" mode="ios">
                     <IonTabButton tab="tab1" href="/therapist/booking">
