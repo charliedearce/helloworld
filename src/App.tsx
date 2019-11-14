@@ -38,8 +38,8 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 firebase.initializeApp({
-    apiKey: "AIzaSyDLoqcbTDMFuurtAyDgVEKZ6qwo0j0Osjk",
-    authDomain: "fir-auth-tutorial-ed11f.firebaseapp.com"
+    apiKey: "AIzaSyDoZswxRx9iwgROuj3HdhAQ-hhGs5YlAqg",
+    authDomain: "winning-hands-3ac66.firebaseapp.com"
 })
 
 const App: React.FC = () => (

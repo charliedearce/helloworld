@@ -23,7 +23,7 @@ export default class ClientLogin extends Component<any> {
     componentDidMount = () => {
         firebase.auth().onAuthStateChanged(user => {
             this.setState({ isSignedIn: !!user })
-            console.log("user", user)
+            console.log("user", firebase.auth())
         })
     }
     render() {
