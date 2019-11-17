@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import {
-    IonApp, IonRouterOutlet
+    IonApp, IonButton
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import firebase from "firebase";
@@ -16,6 +16,7 @@ import Privacy from "./pages/common/privacy";
 
 import ClientWrapper from "./components/container/client-wrapper";
 import TherapistWrapper from "./components/container/therapist-wrapper";
+import {ClientRoute, TherapistRoute} from "./services/helpers/clientProtectedRoutes";
 import ItemSlidingExample from "./App.test";
 
 /* Core CSS required for Ionic components to work properly */
@@ -42,6 +43,37 @@ firebase.initializeApp({
     authDomain: "winning-hands-3ac66.firebaseapp.com"
 })
 
+const notfound = () => {
+    if(JSON.parse(localStorage.getItem('login'))){
+        if(JSON.parse(localStorage.getItem('login'))['type'] === 1){
+            return (
+                <Route
+                    render={function () {
+                        return <Redirect to="/client/booking"/>;
+                    }}
+                />
+            );
+        } else {
+            return (
+                <Route
+                    render={function () {
+                        return <Redirect to="/therapist/booking"/>;
+                    }}
+                />
+            );
+        }
+    } else {
+        return (
+            <Route
+                render={function () {
+                    return <Redirect to="/"/>;
+                }}
+            />
+        );
+    }
+
+}
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter >
@@ -55,28 +87,28 @@ const App: React.FC = () => (
         <Route exact path="/privacy" component={Privacy}/>
 
         {/*TAB ROUTES*/}
-        <Route exact path="/therapist/booking" component={TherapistWrapper} />
-        <Route exact path="/therapist/massage" component={TherapistWrapper}/>
-        <Route exact path="/therapist/massage/:id" component={TherapistWrapper}/>
-        <Route exact path="/therapist/message" component={TherapistWrapper} />
-        <Route exact path="/therapist/message/:id" component={TherapistWrapper}/>
-        <Route exact path="/therapist/profile" component={TherapistWrapper} />
-        <Route exact path="/therapist/profile/edit" component={TherapistWrapper} />
-        <Route exact path="/therapist/changepassword" component={TherapistWrapper} />
-        <Route exact path="/therapist/notifications" component={TherapistWrapper} />
-        <Route exact path="/therapist/settings" component={TherapistWrapper} />
+        <TherapistRoute exact path="/therapist/booking" component={TherapistWrapper} />
+        <TherapistRoute exact path="/therapist/massage" component={TherapistWrapper}/>
+        <TherapistRoute exact path="/therapist/massage/:id" component={TherapistWrapper}/>
+        <TherapistRoute exact path="/therapist/message" component={TherapistWrapper} />
+        <TherapistRoute exact path="/therapist/message/:id" component={TherapistWrapper}/>
+        <TherapistRoute exact path="/therapist/profile" component={TherapistWrapper} />
+        <TherapistRoute exact path="/therapist/profile/edit" component={TherapistWrapper} />
+        <TherapistRoute exact path="/therapist/changepassword" component={TherapistWrapper} />
+        <TherapistRoute exact path="/therapist/notifications" component={TherapistWrapper} />
+        <TherapistRoute exact path="/therapist/settings" component={TherapistWrapper} />
 
-        <Route exact path="/client/booking" component={ClientWrapper} />
-        <Route exact path="/client/message" component={ClientWrapper} />
-        <Route exact path="/client/message/:id" component={ClientWrapper}/>
-        <Route exact path="/client/profile" component={ClientWrapper} />
-        <Route exact path="/client/profile/edit" component={ClientWrapper} />
-        <Route exact path="/client/changepassword" component={ClientWrapper} />
-        <Route exact path="/client/notifications" component={ClientWrapper} />
-        <Route exact path="/client/about" component={ClientWrapper} />
-        <Route exact path="/client/privacy" component={ClientWrapper} />
-        <Route exact path="/client/settings" component={ClientWrapper} />
-
+        <ClientRoute exact path="/client/booking" component={ClientWrapper} />
+        <ClientRoute exact path="/client/message" component={ClientWrapper} />
+        <ClientRoute exact path="/client/message/:id" component={ClientWrapper}/>
+        <ClientRoute exact path="/client/profile" component={ClientWrapper} />
+        <ClientRoute exact path="/client/profile/edit" component={ClientWrapper} />
+        <ClientRoute exact path="/client/changepassword" component={ClientWrapper} />
+        <ClientRoute exact path="/client/notifications" component={ClientWrapper} />
+        <ClientRoute exact path="/client/about" component={ClientWrapper} />
+        <ClientRoute exact path="/client/privacy" component={ClientWrapper} />
+        <ClientRoute exact path="/client/settings" component={ClientWrapper} />
+        {notfound()}
     </IonReactRouter>
   </IonApp>
 );

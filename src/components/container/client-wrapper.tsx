@@ -45,10 +45,10 @@ const ClientWrapper: React.FC = () => (
                         <IonIcon icon={list} />
                         <IonLabel>Book</IonLabel>
                     </IonTabButton>
-                    <IonTabButton tab="tab2" href="/client/message">
-                        <IonIcon icon={chatbubbles} />
-                        <IonLabel>Chat</IonLabel>
-                    </IonTabButton>
+                    {/*<IonTabButton tab="tab2" href="/client/message">*/}
+                    {/*    <IonIcon icon={chatbubbles} />*/}
+                    {/*    <IonLabel>Chat</IonLabel>*/}
+                    {/*</IonTabButton>*/}
                     <IonTabButton tab="tab3" href="/client/profile">
                         <IonIcon icon={contact} />
                         <IonLabel>Profile</IonLabel>

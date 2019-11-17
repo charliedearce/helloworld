@@ -40,6 +40,7 @@ const TherapistWrapper: React.FC = () => (
                     <Route exact path="/therapist/settings" component={Settings} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/privacy" component={Privacy} />
+
                 </IonRouterOutlet>
                 <IonTabBar slot="bottom" mode="ios">
                     <IonTabButton tab="tab1" href="/therapist/booking">
@@ -50,10 +51,10 @@ const TherapistWrapper: React.FC = () => (
                         <IonIcon icon={hand} />
                         <IonLabel>Massage</IonLabel>
                     </IonTabButton>
-                    <IonTabButton tab="tab3" href="/therapist/message">
-                        <IonIcon icon={chatbubbles} />
-                        <IonLabel>Chat</IonLabel>
-                    </IonTabButton>
+                    {/*<IonTabButton tab="tab3" href="/therapist/message">*/}
+                    {/*    <IonIcon icon={chatbubbles} />*/}
+                    {/*    <IonLabel>Chat</IonLabel>*/}
+                    {/*</IonTabButton>*/}
                     <IonTabButton tab="tab4" href="/therapist/profile">
                         <IonIcon icon={contact} />
                         <IonLabel>Profile</IonLabel>
