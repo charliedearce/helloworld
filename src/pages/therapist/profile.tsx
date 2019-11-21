@@ -8,6 +8,7 @@ import {
 import {connect} from 'react-redux';
 import * as actions from "../../services/store/profile/actions";
 import Swal from "sweetalert2";
+import firebase from "firebase";
 
 class TherapistProfile extends Component<any> {
     componentDidMount(): void {
@@ -34,6 +35,7 @@ class TherapistProfile extends Component<any> {
             confirmButtonText: 'Yes, Sign me out!'
         }).then((result) => {
             if (result.value) {
+                firebase.auth().signOut()
                 this.props.Logout();
             }
         })

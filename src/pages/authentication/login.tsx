@@ -12,6 +12,7 @@ import * as actions from "../../services/store/auth/actions";
 import Swal from "sweetalert2";
 import SimpleReactValidator from "simple-react-validator";
 import Auth from "../../services/helpers/auth";
+import {GoogleLogin} from 'react-google-login';
 interface myState {
     isSignedIn: boolean,
     email: string,
@@ -36,24 +37,25 @@ class Login extends Component<any, myState> {
     }
 
     uiConfig = {
-        signInFlow: "popup",
+        signInFlow: "redirect",
         signInOptions: [
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             firebase.auth.FacebookAuthProvider.PROVIDER_ID
         ],
         callbacks: {
-            signInSuccess: () => {
-                this.props.socialLogin({
-                    email: firebase.auth().currentUser.email,
-                    social_id: firebase.auth().currentUser.uid,
-                    display_name: firebase.auth().currentUser.displayName,
-                    image: firebase.auth().currentUser.photoURL
-                })
-            }
+            signInSuccess: () => false
         }
     }
 
     componentDidMount = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            this.props.socialLogin({
+                email: firebase.auth().currentUser.email,
+                social_id: firebase.auth().currentUser.uid,
+                display_name: firebase.auth().currentUser.displayName,
+                image: firebase.auth().currentUser.photoURL
+            })
+        })
         if (Auth.isAuthenticated()) {
             if(this.props.location.pathname === '/'){
                 if (JSON.parse(localStorage.getItem('login'))['type'] === 1) {
@@ -105,8 +107,16 @@ class Login extends Component<any, myState> {
 
     render() {
         this.validator.purgeFields();
+
         return (
             <LoginWrapper title="Sign in">
+                <GoogleLogin
+                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                    buttonText="Login"
+                    onSuccess={() =>alert('wow')}
+                    onFailure={() =>alert('eww')}
+                    cookiePolicy={'single_host_origin'}
+                />
                 <IonGrid>
                     <form onSubmit={this.submitHandler}>
                         <IonRow>
