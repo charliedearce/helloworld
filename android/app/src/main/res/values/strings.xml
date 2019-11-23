@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">WinningHands</string>
+    <string name="title_activity_main">WinningHands</string>
+    <string name="package_name">com.winninghands.com</string>
+    <string name="custom_url_scheme">com.winninghands.com</string>
+    <string name="facebook_app_id">550254382437111</string>
+    <string name="fb_login_protocol_scheme">fb550254382437111</string>
+
+</resources>

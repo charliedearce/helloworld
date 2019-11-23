@@ -5,7 +5,7 @@ import 'axios-progress-bar/dist/nprogress.css'
 let token =  localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login'))['access_token'] : '';
 
 const instance = axios.create({
-    baseURL: 'https://murmuring-plains-32598.herokuapp.com/api/',
+    baseURL: 'http://api.test/api/',
     headers: {
         'Authorization': `Bearer ` + token,
     }

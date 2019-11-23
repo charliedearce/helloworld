@@ -1,4 +1,5 @@
 import axios from "../../../axios-config";
+import axios_cus from "axios";
 import * as actionTypes from "./actionTypes";
 
 export const socLogin = (data) => {
@@ -29,6 +30,13 @@ export const therapistReg = (data) => {
     };
 };
 
+export const fbData = (data) => {
+    return {
+        type: actionTypes.FB_DATA,
+        data: data
+    };
+};
+
 export const socialLogin = (data) => {
     return dispatch => {
         axios.post( 'social-client', data)
@@ -36,7 +44,7 @@ export const socialLogin = (data) => {
                 dispatch(socLogin(response.data));
             } )
             .catch( error => {
-                console.log(error);
+                alert(error);
             } );
     };
 };
@@ -75,6 +83,32 @@ export const therapistRegister = (data) => {
             } )
             .catch( error => {
                 console.log(error);
+            } );
+    };
+};
+
+
+export const getFbData = (data) => {
+
+    return dispatch => {
+
+        axios_cus.get( 'https://graph.facebook.com/'+ data.userId +'?fields=email,id,name,gender,link,picture&type=large&access_token=' + data.token)
+            .then( response => {
+                dispatch(fbData(response.data));
+                // alert(JSON.stringify(response))
+                // alert(JSON.stringify(response.data.email))
+                // alert(JSON.stringify(response.data.id))
+                // alert(JSON.stringify(response.data.name))
+                // alert(JSON.stringify(response.data.picture.data.url))
+                // socialLogin({
+                //     email: response.data.email,
+                //     social_id: response.data.id,
+                //     display_name: response.data.name,
+                //     image: response.data.picture.data.url
+                // })
+            } )
+            .catch( error => {
+                alert(error);
             } );
     };
 };

@@ -4,7 +4,8 @@ import {IonButton, IonCol, IonRow} from "@ionic/react";
 import {connect} from 'react-redux';
 import * as actions from "../../services/store/profile/actions";
 import Swal from "sweetalert2";
-import firebase from "firebase";
+
+import { Plugins } from '@capacitor/core';
 
 class ClientProfile extends Component<any> {
     componentDidMount(): void {
@@ -20,6 +21,10 @@ class ClientProfile extends Component<any> {
         }
     }
 
+    async signOutFb(): Promise<void> {
+        await Plugins.FacebookLogin.logout();
+    }
+
     signOut = () => {
         Swal.fire({
             title: 'Are you sure?',
@@ -31,7 +36,7 @@ class ClientProfile extends Component<any> {
             confirmButtonText: 'Yes, Sign me out!'
         }).then((result) => {
             if (result.value) {
-                firebase.auth().signOut()
+                this.signOutFb()
                 this.props.Logout();
             }
         })
@@ -57,7 +62,7 @@ class ClientProfile extends Component<any> {
                         <IonButton className="ion-margin-vertical"
                                    expand="full" color="dark"
                                    shape="round" fill="outline"
-                                   routerLink={'/client/profile/edit?data='+JSON.stringify(this.props.profileData)}
+                                   routerLink={'/client/profile/edit?data='+ btoa(JSON.stringify(this.props.profileData))}
                         >
                             Edit Profile
                         </IonButton>

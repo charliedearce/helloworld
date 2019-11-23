@@ -37,7 +37,7 @@ class TherapistProfileEdit extends Component<any, myState> {
     constructor(props: any){
         super(props);
         const data = new URLSearchParams(this.props.location.search)
-        let val = JSON.parse(data.get('data'));
+        let val = JSON.parse(atob(data.get('data')));
         if(!val){
             return this.props.history.push('/therapist/profile');
         }
@@ -153,7 +153,7 @@ class TherapistProfileEdit extends Component<any, myState> {
                 <IonContent>
                     <IonRow>
                         <IonCol className="ion-margin-vertical ion-text-center">
-                            <div className="container-pp">
+                            <div className="container-pp img-edit">
                                 <img onClick={this.uploadImg}
                                      src={this.state.image ? this.state.image : '/assets/blank.png'}/>
                                 <IonIcon className="btn" icon={camera}/>

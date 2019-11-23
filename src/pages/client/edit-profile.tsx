@@ -35,19 +35,20 @@ class ClientEditProfile extends Component<any, myState> {
     constructor(props: any){
         super(props);
         const data = new URLSearchParams(this.props.location.search)
-        let val = JSON.parse(data.get('data'));
+        let val = JSON.parse(atob(data.get('data')));
+
         if(!val){
             return this.props.history.push('/client/profile');
         }
 
         this.state = {
-            email: val.email,
-            first_name: val.first_name,
-            last_name: val.last_name,
-            phone_number: val.phone_number,
-            fave_casino: val.fave_casino,
-            fave_game: val.fave_game,
-            image: val.image,
+            email: val.email ? val.email : '',
+            first_name: val.first_name ? val.first_name : '',
+            last_name: val.last_name ? val.last_name : '',
+            phone_number: val.phone_number ? val.phone_number : '',
+            fave_casino: val.fave_casino ? val.fave_casino : '',
+            fave_game: val.fave_game ? val.fave_game : '',
+            image: val.image ? val.image : '',
         }
 
         this.validator = new SimpleReactValidator({
@@ -141,8 +142,8 @@ class ClientEditProfile extends Component<any, myState> {
                 <IonContent>
                     <IonRow>
                         <IonCol className="ion-margin-vertical ion-text-center">
-                            <div className="container-pp">
-                                <div className="container-pp">
+                            <div className="container-pp" >
+                                <div className="container-pp img-edit">
                                     <img onClick={this.uploadImg}
                                          src={this.state.image ? this.state.image : '/assets/blank.png'}/>
                                     <IonIcon className="btn" icon={camera}/>

@@ -1,0 +1,1 @@
+export const GET_THERAPIST_LIST = 'GET_THERAPIST_LIST';

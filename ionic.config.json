@@ -1,5 +1,7 @@
 {
   "name": "ionicWinningHands",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }

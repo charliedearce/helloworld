@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
 import {
-    IonItem, IonLabel, IonInput,
+    IonItem, IonLabel, IonInput, IonIcon,
     IonRow, IonCol, IonGrid, IonRouterLink, IonButton, IonText
 } from '@ionic/react';
 import {LoginWrapper} from '../../components/container/login-wrapper';
-import firebase from "firebase"
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
-
 import {connect} from 'react-redux';
 import * as actions from "../../services/store/auth/actions";
 import Swal from "sweetalert2";
 import SimpleReactValidator from "simple-react-validator";
 import Auth from "../../services/helpers/auth";
-import {GoogleLogin} from 'react-google-login';
+import { Plugins } from '@capacitor/core';
+import {logoFacebook} from "ionicons/icons";
+
+
 interface myState {
     isSignedIn: boolean,
     email: string,
-    password: string
+    password: string,
+    fbData: any
 }
 
 class Login extends Component<any, myState> {
@@ -28,7 +29,8 @@ class Login extends Component<any, myState> {
         this.state = {
             isSignedIn: false,
             email: '',
-            password: ''
+            password: '',
+            fbData: []
         }
 
         this.validator = new SimpleReactValidator({
@@ -36,26 +38,15 @@ class Login extends Component<any, myState> {
         })
     }
 
-    uiConfig = {
-        signInFlow: "redirect",
-        signInOptions: [
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            firebase.auth.FacebookAuthProvider.PROVIDER_ID
-        ],
-        callbacks: {
-            signInSuccess: () => false
-        }
+    async getUserInfo(data: any) {
+        const response = await fetch(``);
+        const fb = await response.json();
+        this.setState({
+            fbData: fb
+        })
     }
 
     componentDidMount = () => {
-        firebase.auth().onAuthStateChanged(user => {
-            this.props.socialLogin({
-                email: firebase.auth().currentUser.email,
-                social_id: firebase.auth().currentUser.uid,
-                display_name: firebase.auth().currentUser.displayName,
-                image: firebase.auth().currentUser.photoURL
-            })
-        })
         if (Auth.isAuthenticated()) {
             if(this.props.location.pathname === '/'){
                 if (JSON.parse(localStorage.getItem('login'))['type'] === 1) {
@@ -86,7 +77,16 @@ class Login extends Component<any, myState> {
     };
 
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<{}>, snapshot?: any): void {
-        console.log(this.props.token)
+
+        if(prevProps.facebook !== this.props.facebook){
+
+            this.props.socialLogin({
+                email: this.props.facebook.email,
+                social_id: this.props.facebook.id,
+                display_name: this.props.facebook.name,
+                image: this.props.facebook.picture.data.url
+            })
+        }
         if (prevProps.token !== this.props.token) {
             if (this.props.token.access_token) {
                 localStorage.setItem('login', JSON.stringify(this.props.token))
@@ -105,18 +105,22 @@ class Login extends Component<any, myState> {
         }
     }
 
+    async signIn(): Promise<void> {
+        const { history } = this.props;
+        const FACEBOOK_PERMISSIONS = ['public_profile', 'email'];
+        const result = await Plugins.FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
+        if (result && result.accessToken) {
+            // this.getUserInfo(result.accessToken);
+            this.props.getFbData(result.accessToken)
+        }
+    }
+
     render() {
         this.validator.purgeFields();
 
         return (
             <LoginWrapper title="Sign in">
-                <GoogleLogin
-                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                    buttonText="Login"
-                    onSuccess={() =>alert('wow')}
-                    onFailure={() =>alert('eww')}
-                    cookiePolicy={'single_host_origin'}
-                />
+
                 <IonGrid>
                     <form onSubmit={this.submitHandler}>
                         <IonRow>
@@ -172,11 +176,14 @@ class Login extends Component<any, myState> {
                     <IonRow>
                         <IonCol className="ion-text-center">
                             <IonText>OR</IonText>
-
-                            <StyledFirebaseAuth
-                                uiConfig={this.uiConfig}
-                                firebaseAuth={firebase.auth()}
-                            />
+                        </IonCol>
+                    </IonRow>
+                    <IonRow>
+                        <IonCol className="ion-text-center">
+                            <IonButton className="ion-margin-vertical" onClick={() => this.signIn()}  size="large"
+                                       shape="round" expand="block">
+                                <IonIcon icon={logoFacebook}/>&nbsp;&nbsp; Login with FaceBook
+                            </IonButton>
                         </IonCol>
                     </IonRow>
                 </IonGrid>
@@ -188,6 +195,7 @@ class Login extends Component<any, myState> {
 const mapStateToProps = (state: any) => {
     return {
         token: state.auth.token,
+        facebook: state.auth.facebook
     };
 };
 
@@ -195,6 +203,7 @@ const mapDispatchToProps = (dispatch: any) => {
     return {
         socialLogin: (data: any) => dispatch(actions.socialLogin(data)),
         Login: (data: any) => dispatch(actions.Login(data)),
+        getFbData: (data: any)  => dispatch(actions.getFbData(data)),
     };
 };
 

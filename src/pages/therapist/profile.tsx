@@ -63,7 +63,7 @@ class TherapistProfile extends Component<any> {
                         <IonButton className="ion-margin-vertical"
                                    expand="full" color="dark"
                                    shape="round" fill="outline"
-                                   routerLink={'/therapist/profile/edit?data='+JSON.stringify(this.props.profileData)}
+                                   routerLink={'/therapist/profile/edit?data='+ btoa((JSON.stringify(this.props.profileData)))}
                         >
                             Edit Profile
                         </IonButton>
